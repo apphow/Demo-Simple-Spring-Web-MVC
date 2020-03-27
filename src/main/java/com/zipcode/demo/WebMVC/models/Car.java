@@ -24,6 +24,14 @@ public class Car {
         this.year = year;
     }
 
+    public Car(long id, String make, String model, String color, long year) {
+        this.id = id;
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.year = year;
+    }
+
     public long getId() {
         return id;
     }
