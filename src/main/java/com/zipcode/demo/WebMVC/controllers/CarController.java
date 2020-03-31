@@ -82,4 +82,16 @@ public class CarController {
     }
 
     // Delete controller
+    @DeleteMapping("/car/{id}")
+    public ResponseEntity<?> delete(@PathVariable long id){
+        Optional<Car> existingCar = carService.findById(id);
+
+        return existingCar
+                .map(c -> {
+                    carService.delete(c.getId());
+                    return ResponseEntity.ok().build();
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

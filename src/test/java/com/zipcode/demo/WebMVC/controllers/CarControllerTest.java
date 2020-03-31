@@ -143,7 +143,21 @@ class CarControllerTest {
     }
 
 
-    // Delet Test here
+    // Delete Test here
+    @Test
+    @DisplayName("DELETE /car/1 - Success")
+    void testCarDeleteSuccess() throws Exception {
+        // Setup mocked car
+        Car mockCar = new Car("Chevrolet", "Stingray", "Blade Silver", 2020);
+
+        // Setup the mocked service
+        doReturn(Optional.of(mockCar)).when(service).findById(1);
+        doReturn(true).when(service).delete(1);
+
+        // Execute our DELETE request
+        mockMvc.perform(delete("/car/{id}", 1))
+                .andExpect(status().isOk());
+    }
 
 
 
